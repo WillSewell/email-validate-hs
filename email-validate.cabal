@@ -1,10 +1,11 @@
 name:           email-validate
-version:        2.3
+version:        2.3.0.1
 license:        BSD3
 license-file:   LICENSE
 author:         George Pollard <porges@porg.es>
 maintainer:     George Pollard <porges@porg.es>
 homepage:       https://github.com/Porges/email-validate-hs
+bug-reports:    https://github.com/Porges/email-validate-hs/issues
 category:       Text
 synopsis:       Email address validation
 description:    Validating an email address string against RFC 5322
@@ -19,7 +20,7 @@ source-repository head
 source-repository this
     type: git
     location: git://github.com/Porges/email-validate-hs.git
-    tag: v2.3
+    tag: v2.3.0.1
 
 library
     build-depends:
@@ -34,6 +35,11 @@ library
         Text.Email.QuasiQuotation,
         Text.Email.Validate,
         Text.Email.Parser
+
+    -- Needed for Generics on 7.4:
+    if impl(ghc < 7.6)
+        build-depends:
+            ghc-prim
 
 test-suite Main
     type: exitcode-stdio-1.0
