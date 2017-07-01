@@ -110,7 +110,7 @@ instance Arbitrary EmailAddress where
         local <- suchThat arbitrary (\l -> isEmail l (BS.pack "example.com"))
         domain <- suchThat arbitrary (\d -> isEmail (BS.pack "example") d)
         let (Just result) = emailAddress (makeEmailLike local domain)
-        pure result
+        return result
 
         where
         isEmail l d = isValid (makeEmailLike l d)
